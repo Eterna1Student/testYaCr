@@ -1,0 +1,240 @@
+@font-face {
+    font-family: 'Golos Text';
+    src: url('./fonts/GolosText-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Golos Text';
+    src: url('./fonts/GolosText-Medium.ttf') format('truetype');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Golos Text';
+    src: url('./fonts/GolosText-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Golos Text';
+    src: url('./fonts/GolosText-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Merriweather';
+    src: url('./fonts/Merriweather-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Merriweather';
+    src: url('./fonts/Merriweather-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./fonts/Montserrat-Medium.ttf') format('truetype');
+    font-weight: 500;
+}
+
+
+:root {
+    --primary: #313131;
+    --secondary: #F54932;
+    --blue: #3057A2;
+  }
+
+
+* {
+    box-sizing: border-box;
+	padding: 0px;
+	margin: 0px;
+}
+
+body {
+    font-family: 'Golos Text', sans-serif;
+}
+
+a, a:link, a:visited  {
+    text-decoration: none;
+}
+
+a:hover  {
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1262px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+
+/* ================================================================== */
+
+header {
+    width: 100%;
+    padding: 26px 0 120px;
+    background: url(./images/headerBG.png);
+    background-size: cover;
+    background-position: center;
+}
+
+.header__logo {
+    margin-bottom: 62px;
+}
+
+.header__hero {
+    width: 100%;
+    max-width: 542px;
+}
+
+.header__title {
+    margin-bottom: 24px;
+}
+
+.header__title p {
+    font-family: 'Merriweather';
+    font-weight: 400;
+    font-size: 60px;
+    line-height: 110%;
+    color: var(--primary);
+}
+
+.header__title p:nth-child(2) {
+    text-align: center;
+}
+
+.header__title p:last-child {
+    text-align: end;
+}
+
+.header__description {
+    margin-bottom: 40px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 130%;
+    color: var(--primary);
+}
+
+.header__links {
+    display: flex;
+    gap: 16px;
+    height: 72px;
+
+}
+
+.header__support, .header__detailed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0 49px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 130%;
+    border: 2px solid var(--primary);
+    border-radius: 66px;
+    transition: all ease .3s;
+}
+
+.header__support {
+    color: #fff;
+    background-color: var(--primary);
+}
+
+.header__support:hover {
+    color: #1F1F1F;
+    background-color: #FBCE51;
+    border: 2px solid #FBCE51;
+}
+
+.header__detailed {
+    color: #1F1F1F;
+}
+
+.header__detailed:hover {
+    color: #fff;
+    background-color: var(--primary);
+}
+
+
+/* ================================================================== */
+
+main {
+    padding: 80px 0 140px;
+}
+
+.support {
+
+}
+
+.lecture {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+    'top    photo'
+    'bottom photo';
+    width: 100%;
+    margin-bottom: 64px;
+}
+
+.lecture__title {
+    width: 100%;
+    max-width: 764px;
+    font-family: 'Merriweather';
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 135%;
+    color: var(--primary);
+}
+
+.lecture__title_top {
+    grid-area: top;
+    transform: translateY(26px);
+}
+
+.lecture__title_bottom {
+    grid-area: bottom;
+    text-indent: 160px;
+    transform: translateY(-26px);
+}
+
+.lecture__title_bottom>span {
+    font-weight: 700;
+    color: var(--secondary);
+}
+
+.lecture__photo {
+    grid-area: photo;
+    margin-left: auto;
+}
+
+
+
+
+
+
+/* ================================================================== */
+
+footer {
+    padding: 40px 0 72px;
+    background-color: #E9DED4;
+}
+
+.copyright {
+    width: 100%;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    color: var(--primary);
+    opacity: .6;
+}
