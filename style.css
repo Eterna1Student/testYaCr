@@ -172,25 +172,38 @@ main {
     padding: 80px 0 140px;
 }
 
-.redLine {
+/* Бегущая строка */
+
+.redLine {                          
     display: flex;
     align-items: center;
-    width: 2335px;
     height: 60px;
     background: var(--secondary);
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+
 }
 
-.redLine>span {
+.redLine>span{
     font-family: 'Merriweather';
     font-weight: 400;
     font-size: 22px;
     line-height: 110%;
     color: #fff;
+    animation: redLine 20s linear infinite;
 }
 
-.redLine>svg {
-    margin: 0 12px;
-} 
+.redLine>span>svg {
+    margin: 0 12px 5px;
+}
+
+@keyframes redLine {
+    0% { transform: translate(100%, 0); }
+    100% { transform: translate(-120%, 0); }
+  }
+
+/* Бегущая строка */
 
 .lecture {
     display: grid;
@@ -324,7 +337,7 @@ main {
     grid-area: faq;
     font-size: 20px;
     font-weight: 400;
-    line-height: 120px;
+    line-height: 120%;
     color: var(--blue);
 }
 
@@ -437,20 +450,65 @@ main {
     max-width: 446px;
 }
 
-
-
-
-
-.swiper {
-
+.roadmap__slider {
+    display: none;
 }
 
-.swiper__head {
+.roadmap__slider-wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+
+.roadmap__slider-line {
+    display: flex;
+    transform: translateX(0px);
+    transition: all ease .4s;
+}
+
+.roadmap__slide {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    min-width: 375px;
+    height: 300px;
+    padding: 62px 20px 20px;
+    background: url(./images/pointBG.png) no-repeat;
+    background-size: cover;
+}
+
+.roadmap__slider-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 28px;
+}
+
+.roadmap__slider-dots {
+    display: flex;
+    gap: 6px;
+    padding: 13px 16px;
+}
+
+.roadmap__slider-dot {
+    width: 10px;
+    height: 10px;
+    background: #D9D9D9;
+    border-radius: 20px;
+}
+
+.roadmap__slider-dot_active {
+    background: var(--primary);
+}
+
+
+
+
+.carusel__head {
     display: flex;
     justify-content: space-between;
 }
 
-.swiper__title {
+.carusel__title {
     font-family: 'Merriweather';
     font-size: 54px;
     font-weight: 400;
@@ -458,7 +516,7 @@ main {
     color: var(--primary);
 }
 
-.swiper__nav {
+.carusel__nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -466,7 +524,7 @@ main {
     margin-bottom: 60px;
 }
 
-.swiper__prev, .swiper__next {
+.carusel__prev, .carusel__next {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -482,25 +540,30 @@ main {
     transition: all ease .3s;
 }
 
-.swiper__prev:hover, .swiper__next:hover {
+.carusel__prev:hover, .carusel__next:hover {
     background-color: #FBCE51;
 }
 
-.swiper__prev {
+.carusel__prev {
     transform: rotate(180deg);
 }
 
-.swiper__wrapper {
-    display: flex;
-    gap: 20px;
+.carusel__wrapper {
+    width: 1222px;
+    overflow: hidden;
 }
 
-.swiper__slide {
+.carusel__line {
+    display: flex;
+    transition: all ease .3s;
+}
+
+.carusel__slide {
     display: flex;
     flex-direction: column;
     text-align: center;
     max-width: 394px;
-    padding: 0 37px;
+    padding: 0 42px;
 }
 
 .slide__photo {
@@ -561,4 +624,246 @@ footer {
     line-height: 120%;
     color: var(--primary);
     opacity: .6;
+}
+
+
+
+@media ( max-width: 1200px ) {
+
+    .header__detailed {
+        border: 2px solid #fff;
+        background: #fff;
+    }
+
+    .header__detailed:hover {
+        border: 2px solid var(--primary);
+    }
+
+    .lecture {
+        grid-template-columns: 100%;
+        grid-template-rows: auto auto auto auto;
+        grid-template-areas: 
+        'top'
+        'photo'
+        'photo'
+        'bottom';
+    }
+
+    .lecture__title_top {
+        transform: none;
+    }
+
+    .lecture__title_bottom {
+        text-indent: 0;
+        transform: none;
+    }
+
+    .lecture__photo {
+        margin: 40px 0 40px auto;
+    }
+
+    .session {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto;
+        grid-template-areas: 
+        'photo'
+        'title'
+        'table'
+        'faq';
+        margin-bottom: 160px;
+    }
+
+    .session__title {
+        margin: 24px 0 44px;
+    }
+
+    .table__left-col {
+        max-width: none;
+    }
+
+    .roadmap__points {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto auto auto auto auto;
+        grid-template-areas:
+        'a b'
+        'c d'
+        'c e'
+        'f f'
+        'g g';
+    }
+
+    .point__text {
+        max-width: none;
+    }
+
+    #roadmap__point_6>p {
+        width: 80%;
+    }
+
+    #roadmap__point_7>p {
+        width: 50%;
+    }
+
+    #roadmap__point_7::after {
+        left: auto;
+        right: -42px;
+    }
+}
+
+@media ( max-width: 768px ) {
+
+    .header__title>p {
+        font-size: 50px;
+    }
+
+    .roadmap__title>p {
+        position: static;
+        margin-top: 12px;
+    }
+
+    .roadmap__points {
+        display: none;
+    }
+
+    .roadmap__point {
+        display: flex;
+        gap: 16px;
+        padding: 0;
+        background: none;
+    }
+
+    #roadmap__point_7>p {
+        width: 100%;
+    }
+
+    #roadmap__point_7::after {
+        display: none;
+    }
+
+    .roadmap__slider {
+        display: block;
+    }
+
+    .roadmap__slider {
+        position: relative;
+        padding-top: 148px;
+    }
+
+    .roadmap__slider::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 100%;
+        min-width: 355px;
+        max-width: 380px;
+        height: 207px;
+        background-image: url(./images/plane.png);
+        background-size: cover;
+        z-index: 2;
+    }
+}
+
+@media ( max-width: 576px ) {
+
+    header {
+        padding: 18px 0 358px;
+        background-image: url(./images/headerBgMobile.png);
+        background-color: #E9DED4;
+        
+        background-size: cover;
+        background-position: center;
+    }
+
+    .header__title>p {
+        max-width: 380px;
+        font-size: 36px;
+    }
+
+    .header__description {
+        margin-bottom: 32px;
+        text-align: left;
+    }
+
+    .header__links {
+        flex-wrap: wrap;
+        height: 47px;
+    }
+
+    .header__support, .header__detailed {
+        padding: 0 30px;
+    }
+
+    .lecture {
+        margin-bottom: 34px;
+    }
+
+    .lecture__title {
+        font-size: 28px;
+    }
+
+    .lecture__photo {
+        width: 100%;
+        margin: 24px 0 24px;
+    }
+
+    .session {
+        margin-bottom: 120px;
+    }
+
+    .session__title {
+        margin: 24px 0 38px;
+        font-size: 28px;
+    }
+
+    .table {
+        grid-area: table;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: auto;
+    }
+
+    .table__left-col {
+        border-right: none;
+    }
+
+    .table__left-col:not(:nth-child(9)) {
+        border-bottom: none;
+    }
+
+    .table__right-col {
+        padding: 0 0 16px;
+    }
+
+    .session__faq {
+        font-size: 18px;
+        margin-top: 24px;
+    }
+
+    .roadmap__title {
+        font-size: 36px;
+    }
+
+    .roadmap__title>p {
+        font-size: 18px;
+    }
+
+    .roadmap__slide {
+        min-width: 335px;
+    }
+
+    .point__text {
+        width: 100%;
+        font-family: 'Golos Text';
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 120%;
+        letter-spacing: -0.7px;
+        color: var(--primary);
+    }
+
+    .carusel__title {
+        font-size: 36px;
+    }
 }
