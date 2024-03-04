@@ -59,6 +59,7 @@ const images = document.querySelectorAll('.roadmap__slide')
 const sliderLine = document.querySelector('.roadmap__slider-line')
 let count = 0
 let width
+const sliderDots = document.querySelectorAll('.roadmap__slider-dot')
 
 function init() {
     console.log('resize')
@@ -73,24 +74,26 @@ function init() {
 
 window.addEventListener('resize', init)
 init()
-
+thisSlide(count)
 
 document.querySelector('#roadmap__slider-prev').addEventListener('click', () => {
+    if (count == 0) {
+        return
+    }
     document.querySelector('#roadmap__slider-next').disabled = false
     count--
-    if (count <= 0) {
-        document.querySelector('#roadmap__slider-prev').disabled = true
-    }
+    
     rollSlider()
     thisSlide(count)
 })
 
 document.querySelector('#roadmap__slider-next').addEventListener('click', () => {
+    if (count === images.length - 1) {
+        return
+    }
     document.querySelector('#roadmap__slider-prev').disabled = false
     count++
-    if (count >= images.length-1) {
-        document.querySelector('#roadmap__slider-next').disabled = true
-    }
+    
     rollSlider()
     thisSlide(count)
 })
@@ -99,13 +102,35 @@ function rollSlider() {
     sliderLine.style.transform = `translate(-${count * width}px)`
 }
 
+//Pagination
 
-const sliderDots = document.querySelectorAll('.roadmap__slider-dot')
 
 function thisSlide(i) {
-    sliderDots.forEach(i => i.classList.remove('roadmap__slider-dot_active'))
+    console.log(i);
+    sliderDots.forEach(item => item.classList.remove('roadmap__slider-dot_active'))
     sliderDots[i].classList.add('roadmap__slider-dot_active')
+
+    if (count <= 0) {
+        document.querySelector('#roadmap__slider-prev').disabled = true
+    }
+    
+    if (count >= images.length - 1) {
+        document.querySelector('#roadmap__slider-next').disabled = true
+    }
+    // if (count <= 0) {                                                                   //btn disabled 
+    //     document.querySelector('#roadmap__slider-prev').style.opacity = 0.2
+    // } else {
+    //     document.querySelector('#roadmap__slider-prev').style.opacity = 1
+    // } 
+
+    // if (count >= 4) {
+    //     document.querySelector('#roadmap__slider-next').style.opacity = 0.2
+    // } else {
+    //     document.querySelector('#roadmap__slider-next').style.opacity = 1
+    // } 
 }
+
+
 
 // ============================CARUSEL=================================
 

@@ -540,8 +540,18 @@ main {
     transition: all ease .3s;
 }
 
+button[disabled] {
+    background-color: var(--primary); 
+    opacity: .2;
+}
+
 .carusel__prev:hover, .carusel__next:hover {
     background-color: #FBCE51;
+}
+
+
+button[disabled]:hover {
+    background-color: var(--primary); 
 }
 
 .carusel__prev {
