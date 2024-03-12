@@ -83,6 +83,7 @@ function resizeSlide() {
 
         if (caruselWidth <= 400){
           caruselLine.style.width = caruselWidth * caruselSlides.length + 'px'
+          document.getElementById('counter').innerHTML = '1'
 
           caruselSlides.forEach(i => {
             i.style.width = caruselWidth + 'px'
@@ -105,30 +106,63 @@ resizeSlide()
 document.querySelector('#slidePrev').addEventListener('click', () => {
 
     counterReflection()
-
     caruselStepCount--
-    if (caruselStepCount < 0) {
-      caruselStepCount = 1
+
+    if (caruselWidth <= 400) {
+        counterReflectionMobile()
+        if (caruselStepCount < 0) {
+            caruselStepCount = 5
+        }
+        rollCarusel()
+    } else {
+        if (caruselStepCount < 0) {
+            caruselStepCount = 1
+        }
+        rollCarusel()
     }
-    rollCarusel()
 })
 
 document.querySelector('#slideNext').addEventListener('click', () => {
-
+    
     counterReflection()
-
     caruselStepCount++
-    if (caruselStepCount > 1) {
-      caruselStepCount = 0
+
+    if (caruselWidth <= 400) {
+        
+        if (caruselStepCount > 5) {
+            caruselStepCount = 0
+        }
+        counterReflectionMobile()
+        rollCarusel()
+    } else {
+        if (caruselStepCount > 1) {
+            caruselStepCount = 0
+        }
+        rollCarusel()
     }
-    rollCarusel()
 })
 
 function counterReflection() {
     if (caruselStepCount === 0) {
-        document.getElementById('counter').innerHTML = '6'
-    } else if (caruselStepCount === 1) {
         document.getElementById('counter').innerHTML = '3'
+    } else if (caruselStepCount === 1) {
+        document.getElementById('counter').innerHTML = '6'
+    }
+}
+
+function counterReflectionMobile() {
+    if (caruselStepCount === 0) {
+        document.getElementById('counter').innerHTML = '1'
+    } else if (caruselStepCount === 1) {
+        document.getElementById('counter').innerHTML = '2'
+    } else if (caruselStepCount === 2) {
+        document.getElementById('counter').innerHTML = '3'
+    } else if (caruselStepCount === 3) {
+        document.getElementById('counter').innerHTML = '4'
+    } else if (caruselStepCount === 4) {
+        document.getElementById('counter').innerHTML = '5'
+    } else if (caruselStepCount === 5) {
+        document.getElementById('counter').innerHTML = '6'
     }
 }
 
@@ -137,12 +171,27 @@ function rollCarusel() {
     caruselLine.style.transform = `translate(${caruselStepCount * -caruselWidth}px)`
 }
 
-// setInterval(()=> {
-//     caruselStepCount++
-//     if (caruselStepCount > 1) {
-//       caruselStepCount = 0
-//     }
-//     rollCarusel()
-// }, 4000)
 
+
+
+if (caruselWidth <= 400) {
+    setInterval(()=> {
+        caruselStepCount++
+        if (caruselStepCount > 5) {
+          caruselStepCount = 0
+        }
+        counterReflectionMobile()
+        rollCarusel()
+    }, 4000)
+} else {
+    setInterval(()=> {
+        
+        caruselStepCount++
+        if (caruselStepCount > 1) {
+          caruselStepCount = 0
+        }
+        counterReflection()
+        rollCarusel()
+    }, 4000)
+}
 
