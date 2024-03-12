@@ -1,59 +1,7 @@
-// let offset = 0
-// const sliderLine = document.querySelector('#swiperLine')
-// const sliderSlide = document.querySelector('.swiper__slide')
-// let containerWidth = 0
-// let slideWidth = 0
-// let slideActive = 0
-// const quantitySlides = document.querySelectorAll('.swiper__slide')
+// ====================================================================
+// ============================SLIDER==================================
+// ====================================================================
 
-// containerWidth = sliderLine.offsetWidth
-// slideWidth = sliderSlide.offsetWidth
-
-
-// window.addEventListener('resize', () => {
-//   containerWidth = sliderLine.offsetWidth
-//   slideWidth = sliderSlide.offsetWidth
-// })
-
-
-// document.querySelector('#slideNext').addEventListener('click', () => {
-//   if (slideActive < quantitySlides.length - 3) {
-//     slideActive += 1
-//   } else {
-//     slideActive = 0
-//   }
-
-//   sliderLine.style.transform = `translateX(${slideActive * -slideWidth}px)`
-// })
-
-// document.querySelector('#slidePrev').addEventListener('click', () => {
-//   if (slideActive > 0) {
-//     slideActive -= 1
-//   } else {
-//     slideActive = quantitySlides.length - 3
-//   }
-
-//   sliderLine.style.transform = `translateX(${slideActive * -slideWidth}px)`
-// })
-
-// Адаптивная ширина слайда
-
-
-
-
-// function resizeSlideWidth() {
-//   const pointsWrapWidth = document.querySelector('.roadmap__slider-wrapper').offsetWidth
-//   const pointsSlideWidth = document.querySelectorAll('.roadmap__slide')
-
-//   pointsSlideWidth.forEach((i) => {
-//     i.style.minWidth = pointsWrapWidth + 'px'
-//   })
-// }
-// resizeSlideWidth()
-// window.addEventListener('resize', resizeSlideWidth)
-     
-
-// ============================SLIDER=================================
 
 const images = document.querySelectorAll('.roadmap__slide')
 const sliderLine = document.querySelector('.roadmap__slider-line')
@@ -62,7 +10,6 @@ let width
 const sliderDots = document.querySelectorAll('.roadmap__slider-dot')
 
 function init() {
-    console.log('resize')
     width = document.querySelector('.roadmap__slider-wrapper').offsetWidth
     sliderLine.style.width = width*images.length + 'px'
     images.forEach(i => {
@@ -106,7 +53,6 @@ function rollSlider() {
 
 
 function thisSlide(i) {
-    console.log(i);
     sliderDots.forEach(item => item.classList.remove('roadmap__slider-dot_active'))
     sliderDots[i].classList.add('roadmap__slider-dot_active')
 
@@ -117,21 +63,86 @@ function thisSlide(i) {
     if (count >= images.length - 1) {
         document.querySelector('#roadmap__slider-next').disabled = true
     }
-    // if (count <= 0) {                                                                   //btn disabled 
-    //     document.querySelector('#roadmap__slider-prev').style.opacity = 0.2
-    // } else {
-    //     document.querySelector('#roadmap__slider-prev').style.opacity = 1
-    // } 
-
-    // if (count >= 4) {
-    //     document.querySelector('#roadmap__slider-next').style.opacity = 0.2
-    // } else {
-    //     document.querySelector('#roadmap__slider-next').style.opacity = 1
-    // } 
 }
 
 
 
+// ====================================================================
 // ============================CARUSEL=================================
+// ====================================================================
+
+
+const caruselSlides = document.querySelectorAll('.carusel__slide')
+const caruselLine = document.querySelector('.carusel__line')
+let caruselStepCount = 0
+let caruselWidth
+
+
+function resizeSlide() {
+    caruselWidth = document.querySelector('.carusel__wrapper').offsetWidth
+
+        if (caruselWidth <= 400){
+          caruselLine.style.width = caruselWidth * caruselSlides.length + 'px'
+
+          caruselSlides.forEach(i => {
+            i.style.width = caruselWidth + 'px'
+            i.style.height = 'auto'
+          })
+        } else {
+          caruselLine.style.width = caruselWidth * 2 + 'px'
+
+          caruselSlides.forEach(i => {
+          i.style.width = caruselWidth/3 + 'px'
+          i.style.height = 'auto'
+      })
+    }
+  }
+
+
+window.addEventListener('resize', resizeSlide)
+resizeSlide()
+
+document.querySelector('#slidePrev').addEventListener('click', () => {
+
+    counterReflection()
+
+    caruselStepCount--
+    if (caruselStepCount < 0) {
+      caruselStepCount = 1
+    }
+    rollCarusel()
+})
+
+document.querySelector('#slideNext').addEventListener('click', () => {
+
+    counterReflection()
+
+    caruselStepCount++
+    if (caruselStepCount > 1) {
+      caruselStepCount = 0
+    }
+    rollCarusel()
+})
+
+function counterReflection() {
+    if (caruselStepCount === 0) {
+        document.getElementById('counter').innerHTML = '6'
+    } else if (caruselStepCount === 1) {
+        document.getElementById('counter').innerHTML = '3'
+    }
+}
+
+function rollCarusel() {
+
+    caruselLine.style.transform = `translate(${caruselStepCount * -caruselWidth}px)`
+}
+
+// setInterval(()=> {
+//     caruselStepCount++
+//     if (caruselStepCount > 1) {
+//       caruselStepCount = 0
+//     }
+//     rollCarusel()
+// }, 4000)
 
 

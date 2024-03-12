@@ -78,14 +78,14 @@ a:hover  {
 
 header {
     width: 100%;
-    padding: 26px 0 120px;
+    padding: 26px 0 129px;
     background: url(./images/headerBG.png);
     background-size: cover;
     background-position: center;
 }
 
 .header__logo {
-    margin-bottom: 62px;
+    margin-bottom: 58px;
 }
 
 .header__hero {
@@ -191,7 +191,7 @@ main {
     font-size: 22px;
     line-height: 110%;
     color: #fff;
-    animation: redLine 20s linear infinite;
+    animation: redLine 25s linear infinite;
 }
 
 .redLine>span>svg {
@@ -222,7 +222,7 @@ main {
     font-family: 'Merriweather';
     font-size: 36px;
     font-weight: 400;
-    line-height: 135%;
+    line-height: 138%;
     color: var(--primary);
 }
 
@@ -234,7 +234,7 @@ main {
 .lecture__title_bottom {
     grid-area: bottom;
     text-indent: 160px;
-    transform: translateY(-26px);
+    transform: translate(3px, -25px);
 }
 
 .lecture__title_bottom>span {
@@ -503,9 +503,13 @@ main {
 
 
 
-.carusel__head {
-    display: flex;
-    justify-content: space-between;
+.carusel {
+    display: grid;
+    grid-template-columns: 75% 25%;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+    'title nav'
+    'slider slider';
 }
 
 .carusel__title {
@@ -514,14 +518,16 @@ main {
     font-weight: 400;
     line-height: 120%;
     color: var(--primary);
+    grid-area: title;
 }
 
 .carusel__nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 151px;
-    margin-bottom: 60px;
+    max-width: 151px;
+    grid-area: nav;
+    margin-left: auto;
 }
 
 .carusel__prev, .carusel__next {
@@ -558,14 +564,28 @@ button[disabled]:hover {
     transform: rotate(180deg);
 }
 
+.carusel__count {
+    margin: 0 7px;
+}
+
+.carusel__count span {
+    opacity: .6;
+}
+
+#counter {
+    opacity: 1;
+}
+
 .carusel__wrapper {
-    width: 1222px;
+    width: 100%;
+    margin-top: 60px;
     overflow: hidden;
+    grid-area: slider;
 }
 
 .carusel__line {
     display: flex;
-    transition: all ease .3s;
+    transition: all ease .8s;
 }
 
 .carusel__slide {
@@ -577,8 +597,9 @@ button[disabled]:hover {
 }
 
 .slide__photo {
-    width: 320px;
-    height: 320px;
+    width: 100%;
+    max-width: 320px;
+    height: auto;
     margin-bottom: 28px;
     border-radius: 50%;
 }
@@ -602,7 +623,7 @@ button[disabled]:hover {
 
 .slide__btn {
     width: 113px;
-    margin: 0 auto;
+    margin: auto auto 0;
     padding: 12px;
     background: #fff;
     color: var(--blue);
@@ -773,6 +794,27 @@ footer {
         background-size: cover;
         z-index: 2;
     }
+
+    .carusel__slide {
+        padding: 0 20px;
+    }
+
+    .slide__name {
+        font-size: 20px;
+    }
+
+    .slide__grade {
+        font-size: 16px;
+    }
+
+    .slide__btn {
+        padding: 8px;
+    }
+
+    .carusel__prev, .carusel__next {
+        width: 36px;
+        height: 36px;
+    }
 }
 
 @media ( max-width: 576px ) {
@@ -875,5 +917,46 @@ footer {
 
     .carusel__title {
         font-size: 36px;
+    }
+}
+
+@media ( max-width: 440px ) {
+
+    .carusel {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto;
+        grid-template-areas: 
+        'title'
+        'slider'
+        'nav';
+    }
+
+    .carusel__nav {
+        margin: 40px auto 0;
+    }
+
+    .carusel__count {
+        margin: 0 12.5px;
+    }
+
+    .slide__photo {
+        max-width: none;
+    }
+
+    .carusel__slide {
+        padding: 0 24px;
+    }
+
+    .slide__name {
+        font-size: 24px;
+    }
+
+    .slide__grade {
+        font-size: 20px;
+    }
+
+    .slide__btn {
+        padding: 12px;
     }
 }
